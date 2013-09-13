@@ -35,14 +35,13 @@ module WP
           private
 
           def entity_names
-            entities = @result['entities']
-            entities.join(' ') if entities
+            entities = @result[:entities]
+            "(#{ entities.join(', ') })" if entities
           end
 
         end
 
         def format_message(result)
-          puts result
           message = Message.new(result)
           "#{ message.entities } #{ message.location } #{ message.phone_type } #{ message.carrier }"
         end
