@@ -14,22 +14,22 @@ module WP
           end
 
           def entities
-            "#{ @result[:entities].length } associated people/businesses #{ entity_names } found."
+            "#{ @result[:entities].length } people/businesses #{ entity_names } found."
           end
 
           def location
             location = @result[:location].strip
-            location ? "Best location is #{ location }." : "No location found."
+            location ? "Best location: #{ location }." : "No location found."
           end
 
           def phone_type
             type = @result[:type].downcase || 'unknown'
-            "Phone type is #{ type }."
+            "Type: #{ type }."
           end
 
           def carrier
             carrier = @result[:carrier] || 'unknown'
-            "Phone carrier is #{ carrier }."
+            "Carrier: #{ carrier }."
           end
 
           private
