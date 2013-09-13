@@ -14,8 +14,6 @@ module WP
       get '/sms' do
         number = format_number(params[:From])
 
-        number = '9287791341'
-
         result = result(reverse_phone(number))
         messages = split_message(format_message(result))
 
