@@ -32,7 +32,11 @@ module WP
 
           def entities_from_phone(phone)
             entities = phone['belongs_to']
-            entities.map{ |entity| retrieve_by_id(entity['id'])['name'] }
+            entities.map do |entity| 
+              entity = retrieve_by_id(entity['id'])
+              # Businesses have name; people have best_name.
+              entity['name'] || entity['best_name']
+            end
           end
 
           def location_from_phone(phone)
