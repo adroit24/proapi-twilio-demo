@@ -17,41 +17,48 @@ module WP
           end
 
         end
+
+        class ProAPIResponse
+
+          def initialize(response)
+            @response = response
+          end
+
+          def phone
+            return nil if @response['results'].length == 0
+            phone_id = @response['results'][0]
+            retrieve_by_id(phone_id)
+          end
+
+          def entities_from_phone(phone)
+            entities = phone['belongs_to']
+            entities.map{ |entity| retrieve_by_id(entity['id'])['name'] }
+          end
+
+          def location_from_phone(phone)
+            best_location = retrieve_by_id(phone['best_location']['id'])
+            best_location['address'] if best_location
+          end
+
+          def retrieve_by_id(id)
+            @response['dictionary'][id] if id && @response
+          end
+
+        end
         
         def reverse_phone(number)
-          puts "response: #{ProAPI.reverse_phone(number)}"
           ProAPI.reverse_phone(number)
         end
 
-        def phone(response)
-          return nil if response['results'].length == 0
-          phone_id = response['results'][0]
-          retrieve_by_id(phone_id, response)
-        end
-
-        def entities_from_phone(phone, response)
-          entities = phone['belongs_to']
-          entities.map{ |entity| retrieve_by_id(entity['id'], response)['name'] }
-        end
-
-        def location_from_phone(phone, response)
-          best_location = retrieve_by_id(phone['best_location']['id'], response)
-          best_location['address']
-        end
-        
         def result(response)
-          phone = phone(response)
+          response = ProAPIResponse.new(response)
+          phone = response.phone
           {
-            entities: entities_from_phone(phone, response),
-            location: location_from_phone(phone, response),
+            entities: response.entities_from_phone(phone),
+            location: response.location_from_phone(phone),
             type: phone['line_type'],
             carrier: phone['carrier'],
           }
-        end
-
-        def retrieve_by_id(id, response)
-          puts "ID: #{id}"
-          response['dictionary'][id] if id && response
         end
 
       end
