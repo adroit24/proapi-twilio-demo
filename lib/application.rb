@@ -11,14 +11,27 @@ module WP
       helpers Helpers::ProAPI
       helpers Helpers::Formatter
 
-      get '/reverse-phone' do
+      get '/sms' do
+        number = format_number(params[:From])
+
+        number = '9287791341'
+
+        result = result(reverse_phone(number))
+        messages = split_message(format_message(result))
+
+        Twilio::TwiML::Response.new do |r|
+          messages.each{ |message| r.Sms message }
+        end.text
+      end
+
+      get '/call' do
         number = format_number(params[:From])
 
         result = result(reverse_phone(number))
         message = format_message(result)
 
         Twilio::TwiML::Response.new do |r|
-          r.Sms message
+          r.Say message
         end.text
       end
 

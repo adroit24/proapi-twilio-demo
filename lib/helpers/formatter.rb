@@ -46,6 +46,15 @@ module WP
           "#{ message.entities } #{ message.location } #{ message.phone_type } #{ message.carrier }"
         end
 
+        def split_message(message)
+          messages = message.scan(/.{1,150}/)
+          if messages.length > 1
+            messages.each_with_index.map{ |m, i| "#{ m } (#{ i + 1 } of #{ messages.length })" }
+          else
+            [message]
+          end
+        end
+
       end
     end
   end
