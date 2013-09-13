@@ -14,7 +14,7 @@ module WP
           end
 
           def entities
-            "#{ @result[:entities].length } people/businesses #{ entity_names } found."
+            "Associated people/businesses: #{ @result[:entities].length } found#{ entity_names }."
           end
 
           def location
@@ -36,7 +36,7 @@ module WP
 
           def entity_names
             entities = @result[:entities]
-            "(#{ entities.join(', ') })" if entities
+            " (#{ entities.join(', ') })" if entities && entities.length > 0
           end
 
         end
