@@ -33,19 +33,19 @@ module WP
           def entities_from_phone(phone)
             entities = phone['belongs_to']
             entities.map do |entity| 
-              entity = retrieve_by_id(entity['id'])
+              entity = retrieve_by_id(entity['id']['key'])
               # Businesses have name; people have best_name.
               entity['name'] || entity['best_name']
             end
           end
 
           def location_from_phone(phone)
-            best_location = retrieve_by_id(phone['best_location']['id'])
+            best_location = retrieve_by_id(phone['best_location']['id']['key'])
             best_location['address'] if best_location
           end
 
           def retrieve_by_id(id)
-            @response['dictionary'][id] if id && @response
+            @response['dictionary'][id] if id && @response && @response['dictionary'][id]
           end
 
         end
