@@ -15,10 +15,11 @@ module WP
         number = format_number(params[:From])
 
         result = result(reverse_phone(number))
-        messages = split_message(format_message(result))
+#        messages = split_message(format_message(result))
+        message = format_message(result)
 
         Twilio::TwiML::Response.new do |r|
-          messages.each{ |message| r.Sms message }
+          r.Sms message
         end.text
       end
 
