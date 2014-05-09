@@ -12,26 +12,21 @@ module WP
       helpers Helpers::Formatter
 
       get '/sms' do
-        number = format_number(params[:From])
-
-        result = result(reverse_phone(number))
-#        messages = split_message(format_message(result))
-        message = format_message(result)
-
         Twilio::TwiML::Response.new do |r|
           r.Sms message
         end.text
       end
 
       get '/call' do
-        number = format_number(params[:From])
-
-        result = result(reverse_phone(number))
-        message = format_message(result)
-
         Twilio::TwiML::Response.new do |r|
           r.Say message
         end.text
+      end
+
+      def message
+        number = format_number(params[:From])
+        result = result(reverse_phone(number))
+        format_message(result)
       end
 
     end
