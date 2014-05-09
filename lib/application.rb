@@ -3,7 +3,7 @@ require 'twilio-ruby'
 require 'sinatra'
 
 require_relative 'helpers'
- 
+
 module WP
   module SaladTwilioApp
     class Application < Sinatra::Base
@@ -13,19 +13,19 @@ module WP
 
       get '/sms' do
         Twilio::TwiML::Response.new do |r|
-          r.Sms message
+          r.Sms proapi_result_message
         end.text
       end
 
       get '/call' do
         Twilio::TwiML::Response.new do |r|
-          r.Say message
+          r.Say proapi_result_message
         end.text
       end
 
-      def message
+      def proapi_result_message
         number = format_number(params[:From])
-        result = result(reverse_phone(number))
+        result = formatted_result(reverse_phone(number))
         format_message(result)
       end
 

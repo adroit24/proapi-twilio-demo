@@ -24,15 +24,17 @@ module WP
             @response = response
           end
 
+          attr_reader :response
+
           def phone
-            return nil if @response['results'].length == 0
-            phone_id = @response['results'][0]
+            return nil if response['results'].length == 0
+            phone_id = response['results'][0]
             retrieve_by_id(phone_id)
           end
 
           def entities_from_phone(phone)
             entities = phone['belongs_to']
-            entities.map do |entity| 
+            entities.map do |entity|
               entity = retrieve_by_id(entity['id']['key'])
               # Businesses have name; people have best_name.
               entity['name'] || entity['best_name']
@@ -45,16 +47,16 @@ module WP
           end
 
           def retrieve_by_id(id)
-            @response['dictionary'][id] if id && @response && @response['dictionary'][id]
+            response['dictionary'][id] if id && response && response['dictionary'][id]
           end
 
         end
-        
+
         def reverse_phone(number)
           ProAPI.reverse_phone(number)
         end
 
-        def result(response)
+        def formatted_result(response)
           response = ProAPIResponse.new(response)
           phone = response.phone
           {
