@@ -14,6 +14,7 @@ module WP
           def self.reverse_phone(number)
             uri = 'https://proapi.whitepages.com/2.0/phone.json?'
             get(uri, :query => { :phone => number, :api_key => @api_key })
+            puts "I am here -query build" + uri
           end
 
         end
