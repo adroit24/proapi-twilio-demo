@@ -35,7 +35,9 @@ module WP
           end
 
           def entities_from_phone(phone)
+            puts "I am in entities_from_phone - start"
             entities = phone['belongs_to']
+            puts "I am in entities_from_phone - after belongs_to"
             entities.map do |entity|
               entity = retrieve_by_id(entity['id']['key'])
               # Businesses have name; people have best_name.
