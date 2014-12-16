@@ -14,7 +14,6 @@ module WP
           def self.reverse_phone(number)
             uri = 'https://proapi.whitepages.com/2.0/phone.json?'
             get(uri, :query => { :phone => number, :api_key => @api_key })
-            puts "I am here -query build #{query}"
           end
 
         end
@@ -31,7 +30,7 @@ module WP
             return nil if response['results'].length == 0
             phone_id = response['results'][0]
             retrieve_by_id(phone_id)
-            puts "I am in phone - end"
+            puts "I am in phone - end #{phone_id}"
           end
 
           def entities_from_phone(phone)
