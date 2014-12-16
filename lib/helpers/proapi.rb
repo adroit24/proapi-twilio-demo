@@ -14,7 +14,7 @@ module WP
           def self.reverse_phone(number)
             uri = 'https://proapi.whitepages.com/2.0/phone.json?'
             get(uri, :query => { :phone => number, :api_key => @api_key })
-            puts "I am here -query build"
+            puts "I am here -query build #{uri}"
           end
 
         end
@@ -31,6 +31,7 @@ module WP
             return nil if response['results'].length == 0
             phone_id = response['results'][0]
             retrieve_by_id(phone_id)
+            puts "I am in phone - end"
           end
 
           def entities_from_phone(phone)
@@ -39,12 +40,14 @@ module WP
               entity = retrieve_by_id(entity['id']['key'])
               # Businesses have name; people have best_name.
               entity['name'] || entity['best_name']
+              puts "I am in entities_from_phone - end"
             end.reject(&:empty?)
           end
 
           def location_from_phone(phone)
             best_location = retrieve_by_id(phone['best_location']['id']['key'])
             best_location['address'] if best_location
+            puts "I am in location_from_phone - end"
           end
 
           def retrieve_by_id(id)
@@ -59,6 +62,7 @@ module WP
 
         def formatted_result(response)
           response = ProAPIResponse.new(response)
+          puts "I am in formatted_result - after response"
           phone = response.phone
           {
             entities: response.entities_from_phone(phone),
