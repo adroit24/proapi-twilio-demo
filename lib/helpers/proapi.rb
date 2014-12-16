@@ -64,7 +64,7 @@ module WP
 
         def formatted_result(response)
           response = ProAPIResponse.new(response)
-          puts "I am in formatted_result - after response"
+          puts "I am in formatted_result - after response #{response}"
           phone = response.phone
           {
             entities: response.entities_from_phone(phone),
