@@ -27,6 +27,7 @@ module WP
           attr_reader :response
 
           def phone
+            puts "I am in phone - start"
             return nil if response['results'].length == 0
             phone_id = response['results'][0]
             retrieve_by_id(phone_id)
