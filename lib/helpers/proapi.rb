@@ -22,12 +22,13 @@ module WP
 
           def initialize(response)
             @response = response
+            puts "I am in phone - initialize #{@response}"
           end
 
           attr_reader :response
 
           def phone
-            puts "I am in phone - start"
+            puts "I am in phone - start #{response['results'].length}"
             return nil if response['results'].length == 0
             phone_id = response['results'][0]
             retrieve_by_id(phone_id)
