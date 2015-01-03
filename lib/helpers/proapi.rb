@@ -54,6 +54,7 @@ module WP
           end
 
           def retrieve_by_id(id)
+            puts "Dictionary length #{response['dictionary'].length}"
             response['dictionary'][id] if id && response && response['dictionary'][id]
           end
 
