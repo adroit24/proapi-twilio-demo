@@ -36,7 +36,6 @@ module WP
           end
 
           def entities_from_phone(phone)
-            puts "I am in entities_from_phone - start: #{phone['line_type']}"
             entities = phone['belongs_to']
             puts "I am in entities_from_phone - after belongs_to"
             entities.map do |entity|
@@ -50,7 +49,7 @@ module WP
           def location_from_phone(phone)
             best_location = retrieve_by_id(phone['best_location']['id']['key'])
             best_location['address'] if best_location
-            puts "I am in location_from_phone - end"
+            puts "I am in location_from_phone - end #{best_location['address']}"
           end
 
           def retrieve_by_id(id)
