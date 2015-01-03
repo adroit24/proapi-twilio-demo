@@ -20,6 +20,7 @@ module WP
           end
 
           def entities
+            puts "#{ @result[:entities].length } associated people and businesses found#{ entity_names }."
             "#{ @result[:entities].length } associated people and businesses found#{ entity_names }."
           end
 
