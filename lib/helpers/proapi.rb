@@ -43,7 +43,7 @@ module WP
               entity = retrieve_by_id(entity['id']['key'])
               # Businesses have name; people have best_name.
               entity['name'] || entity['best_name']
-              puts "I am in entities_from_phone - end #{entity['best_name']}"
+              #puts "I am in entities_from_phone - end #{entity['best_name']}"
             end
           end
 
