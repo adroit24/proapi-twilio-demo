@@ -49,11 +49,11 @@ module WP
           def location_from_phone(phone)
             best_location = retrieve_by_id(phone['best_location']['id']['key'])
             best_location['address'] if best_location
-            puts "I am in location_from_phone - end #{best_location['address']}"
+            # puts "I am in location_from_phone - end #{best_location['address']}"
           end
 
           def retrieve_by_id(id)
-            puts "Dictionary length #{response['dictionary'].length}"
+            # puts "Dictionary length #{response['dictionary'].length}"
             response['dictionary'][id] if id && response && response['dictionary'][id]
           end
 
