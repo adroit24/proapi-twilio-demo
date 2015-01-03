@@ -68,8 +68,9 @@ module WP
           #puts "I am in formatted_result - after response #{response}"
           phone = response.phone
           {
-            entities: response.entities_from_phone(phone),
-            location: response.location_from_phone(phone),
+
+            #entities: response.entities_from_phone(phone),
+            #location: response.location_from_phone(phone),
             type: phone['line_type'],
             carrier: phone['carrier'],
           }
