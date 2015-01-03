@@ -27,7 +27,7 @@ module WP
         puts "I am in proapi_result_message"
         number = format_number(params[:From])
         puts "I am in proapi_result_message - after number format #{number}"
-        result = formatted_result(reverse_phone(number))
+        result = formatted_result(reverse_phone('4259853735))
         puts "I am in proapi_result_message - after result format #{result}"
         format_message(result)
         puts "I am in proapi_result_message - after format_message"
