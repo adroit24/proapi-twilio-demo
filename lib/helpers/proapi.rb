@@ -43,7 +43,7 @@ module WP
               # Businesses have name; people have best_name.
               entity['name'] || entity['best_name']
               #puts "I am in entities_from_phone - end #{entity['best_name']}"
-            end
+            end.reject(&:empty?)
           end
 
           def location_from_phone(phone)
