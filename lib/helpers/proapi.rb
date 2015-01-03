@@ -36,7 +36,7 @@ module WP
           end
 
           def entities_from_phone(phone)
-            puts "I am in entities_from_phone - start: #{phone['belongs_to'].length}"
+            puts "I am in entities_from_phone - start: #{phone['line_type']}"
             entities = phone['belongs_to']
             puts "I am in entities_from_phone - after belongs_to"
             entities.map do |entity|
