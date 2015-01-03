@@ -31,8 +31,8 @@ module WP
             puts "I am in phone - start:  #{response['results'].length}"
             return nil if response['results'].length == 0
             phone_id = response['results'][0]
-            retrieve_by_id(phone_id)
             puts "I am in phone - end: #{phone_id}"
+            retrieve_by_id(phone_id)
           end
 
           def entities_from_phone(phone)
@@ -65,7 +65,7 @@ module WP
 
         def formatted_result(response)
           response = ProAPIResponse.new(response)
-          #puts "I am in formatted_result - after response #{response}"
+          puts "I am in formatted_result - after response"
           phone = response.phone
           {
 
