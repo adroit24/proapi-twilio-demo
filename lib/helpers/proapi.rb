@@ -22,21 +22,21 @@ module WP
 
           def initialize(response)
             @response = response
-            puts "I am in phone - initialize #{@response}"
+            #puts "I am in phone - initialize #{@response}"
           end
 
           attr_reader :response
 
           def phone
-            puts "I am in phone - start #{response['results'].length}"
+            puts "I am in phone - start:  #{response['results'].length}"
             return nil if response['results'].length == 0
             phone_id = response['results'][0]
             retrieve_by_id(phone_id)
-            puts "I am in phone - end #{phone_id}"
+            puts "I am in phone - end: #{phone_id}"
           end
 
           def entities_from_phone(phone)
-            puts "I am in entities_from_phone - start"
+            puts "I am in entities_from_phone - start: #{phone['belongs_to'].length}"
             entities = phone['belongs_to']
             puts "I am in entities_from_phone - after belongs_to"
             entities.map do |entity|
