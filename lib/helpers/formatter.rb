@@ -9,7 +9,7 @@ module WP
 
         def format_message(result)
           message = ResultString.new(result)
-          puts "I am in format_message"
+         # puts "I am in format_message"
           "#{ message.entities } #{ message.location } #{ message.phone_type } #{ message.carrier }"
         end
 
@@ -20,7 +20,7 @@ module WP
           end
 
           def entities
-            puts "#{ @result[:entities].length } associated people and businesses found#{ entity_names }."
+          #  puts "#{ @result[:entities].length } associated people and businesses found#{ entity_names }."
             "#{ @result[:entities].length } associated people and businesses found#{ entity_names }."
           end
 
@@ -31,13 +31,13 @@ module WP
 
           def phone_type
             type = @result[:type] || 'unknown'
-            puts "Phone type is #{ type.downcase }."
+          #  puts "Phone type is #{ type.downcase }."
             "Phone type is #{ type.downcase }."
           end
 
           def carrier
             carrier = @result[:carrier] || 'unknown'
-            puts "Phone carrier is #{ carrier }."
+          #  puts "Phone carrier is #{ carrier }."
             "Phone carrier is #{ carrier }."
           end
 
