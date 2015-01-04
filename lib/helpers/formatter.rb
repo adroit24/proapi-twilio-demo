@@ -1,4 +1,4 @@
-require 'wolfarm-alpha'
+require 'wolfram-alpha'
 
 module WP
   module SaladTwilioApp
