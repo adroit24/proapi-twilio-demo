@@ -43,6 +43,8 @@ module WP
 
             population = result.subpods[0].plaintext
 
+            #wolfram-alpha pull end
+
             location ? "Best location is #{ location }. Population here is #{ population}." : "No location found."
           end
 
