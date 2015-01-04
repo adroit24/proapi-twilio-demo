@@ -34,7 +34,9 @@ module WP
             options = { "format" => "plaintext" } # see the reference appendix in the documentation.[1]
             client = WolframAlpha::Client.new "K7V79W-EA8G6KTX7W", options
 
-            wa_response = client.query "Population of Bellevue, Wa"
+            clientQueryText = "Population of " + location
+
+            wa_response = client.query clientQueryText
 
             input = wa_response["Input"] # Get the input interpretation pod.
             result = wa_response.find { |pod| pod.title == "Result" } # Get the result pod.  
