@@ -12,7 +12,7 @@ module WP
         def format_message(result)
           message = ResultString.new(result)
          # puts "I am in format_message"
-          "#{ message.entities } #{ message.location } #{ message.phone_type } #{ message.carrier } "
+          "#{ message.entities } \n #{ message.location } \n #{ message.phone_type } \n #{ message.carrier } "
         end
 
         class ResultString
