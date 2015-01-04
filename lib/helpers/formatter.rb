@@ -43,7 +43,7 @@ module WP
 
             population = result.subpods[0].plaintext
 
-            location ? "Best location is #{ location }. Population here is #{ population}" : "No location found."
+            location ? "Best location is #{ location }. Population here is #{ population}." : "No location found."
           end
 
           def phone_type
