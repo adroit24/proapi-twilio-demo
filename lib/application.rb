@@ -26,7 +26,7 @@ module WP
       def proapi_result_message
         
         puts params[:Body]
-        phone_re = /[0-9]/
+        phone_re = /^[0-9]{10}$/
 
         is_match = phone_re.match(params[:Body])
  
