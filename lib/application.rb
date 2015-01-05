@@ -30,7 +30,7 @@ module WP
 
         is_match = phone_re.match(params[:Body])
  
-        puts "is_match result #{}
+        puts "is_match result #{is_match}
 
         number = format_number(params[:From])
 
