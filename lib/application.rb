@@ -26,13 +26,23 @@ module WP
       def proapi_result_message
         
         puts params[:Body]
-        phone_re = /^[a-z]{10}$/
+        phone_re = /^[0-9]{10}$/
 
         is_match = phone_re.match(params[:Body])
  
         puts "is_match result #{is_match}"
 
-        number = format_number(params[:From])
+        if is_match >= 0
+
+          number = format_number(params[:Body])
+
+        else
+
+          number = format_number(params[:From])
+
+        end
+
+        
 
         result = formatted_result(reverse_phone(number))
         format_message(result)
