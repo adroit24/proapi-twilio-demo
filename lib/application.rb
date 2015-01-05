@@ -32,7 +32,7 @@ module WP
  
         puts "is_match result #{is_match}"
 
-        if is_match >= 0
+        if is_match
 
           number = format_number(params[:Body])
 
