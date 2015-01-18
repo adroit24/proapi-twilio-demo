@@ -33,12 +33,12 @@ module WP
         puts "is_match result #{is_match}"
 
         if is_match
-          number = params[:Body]
+          number = format_number(params[:Body])
         else
           number = format_number(params[:From])
         end
         
-
+        puts "Number: #{number}"
         result = formatted_result(reverse_phone(number))
         format_message(result)
       end
