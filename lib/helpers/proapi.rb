@@ -9,7 +9,7 @@ module WP
           include HTTParty
           format :json
 
-          @api_key = '660a4c3daff6a8204198bce967ba3b4c' #ENV['API_KEY']''
+          @api_key = ENV['API_KEY']
 
           def self.reverse_phone(number)
             uri = 'https://proapi.whitepages.com/2.0/phone.json?'
