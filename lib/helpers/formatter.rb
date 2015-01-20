@@ -1,3 +1,5 @@
+require 'wolfram-alpha'
+
 module WP
   module SaladTwilioApp
     module Helpers
@@ -9,7 +11,7 @@ module WP
 
         def format_message(result)
           message = ResultString.new(result)
-          "#{ message.entities } #{ message.location } #{ message.phone_type } #{ message.carrier }"
+          "#{ message.entities } \n #{ message.location } \n #{ message.phone_type } \n #{ message.carrier } "
         end
 
         class ResultString
@@ -24,7 +26,24 @@ module WP
 
           def location
             location = @result[:location].strip if @result[:location]
-            location ? "Best location is #{ location }." : "No location found."
+
+            #wolfarm-alpha data pull
+
+            options = { "format" => "plaintext" } # see the reference appendix in the documentation.[1]
+            client = WolframAlpha::Client.new "K7V79W-EA8G6KTX7W", options
+
+            clientQueryText = "Population of " + location
+
+            wa_response = client.query clientQueryText
+
+            input = wa_response["Input"] # Get the input interpretation pod.
+            result = wa_response.find { |pod| pod.title == "Result" } # Get the result pod.  
+
+            population = result.subpods[0].plaintext
+
+            #wolfram-alpha pull end
+
+            location ? "Best location is #{ location }. Population here is #{ population}." : "No location found."
           end
 
           def phone_type
